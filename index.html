@@ -1,1 +1,365 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+ <strong>
+  </strong>
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8396546318113633"
+     crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>A Magic Site</title>
+   <link rel="icon" href="https://cdn.glitch.global/507cad39-94af-4018-9ee8-af462e475029/98d950ef-d979-4651-ac73-1fec74d77997.image.png"/>
+    <style>
+    canvas {
+    position:fixed;
+    left: 10%;
+    right: 10%;
+    display:flex;
+    top: 9%;
+    background-color: #5e5e5e;
+    }
+    </style>
+    <section>
+      
+</section>
+</head>
+      <!-- content here -->
+      <div class="curve"></div>
+  <head>
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+      name="description"
+      content="huh?"
+    />
+    <meta
+      property="og:image"
+      content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png"
+    />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  <script>
+// Set the date we're counting down to Jun 17, 2022 11:15:00
+var countDownDate = new Date("Jun 15, 2023 11:15:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s "; 
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "School has ended!";
+  }
+}, 1000); 
+</script>
+<script>
+      var jumps;
+      var newWall;
+      var multiplier = 1;
+      var yard;
+      var fall = 0;
+      var info = 0;
+      var palce = -10
+
+      function yearn() {
+        var veil = Math.ceil(Math.random() * 4);
+        if (veil == 1) {
+          return 270 - 75;
+        } else if (veil == 2) {
+          return 270 - 95;
+        } else if (veil == 3) {
+          return 270 - 240;
+        } else {
+          return 270 - 280;
+        }
+        
+      }
+
+      var myGamePiece;
+      var obstacleOne;
+      var obstacleTwo;
+      var obstacleThree;
+      var meter;
+      var score = 0;
+      var highScore = 0;
+      var punchO = 0;
+      var punchTW = 0;
+      var punchTH = 0;
+
+      function startGame() {
+        myGameArea.start();
+        myGamePiece = new component(30, 30, "black", 50, 120);
+        obstacleOne = new component(20, 100, "black", 300, yearn());
+        obstacleTwo = new component(20, 100, "black", 630, yearn());
+        obstacleThree = new component(20, 100, "black", 960, yearn());
+        screenF = new component(960, 270, "black", 0, 0);
+      }
+
+      function collision(one, two) {
+        var myleft = one.x;
+        var myright = one.x + one.width;
+        var mytop = one.y;
+        var mybottom = one.y + one.height;
+        var otherleft = two.x;
+        var otherright = two.x + two.width;
+        var othertop = two.y;
+        var otherbottom = two.y + two.height;
+        var crash = true;
+        if (
+          mybottom < othertop ||
+          mytop > otherbottom ||
+          myright < otherleft ||
+          myleft > otherright
+        ) {
+          crash = false;
+        }
+        return crash;
+      };
+
+      var myGameArea = {
+        canvas: document.createElement("canvas"),
+        start: function () {
+          this.canvas.width = 960;
+          this.canvas.height = 250;
+          this.context = this.canvas.getContext("2d");
+          document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+          this.interval = setInterval(updateGameArea, 20);
+          window.addEventListener("keydown", function (e) {
+            myGameArea.keys = myGameArea.keys || [];
+            myGameArea.keys[e.keyCode] = e.type == "keydown";
+          });
+          window.addEventListener("keyup", function (e) {
+            myGameArea.keys[e.keyCode] = e.type == "keydown";
+          });
+        },
+        clear: function () {
+          this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        },
+      };
+
+      function component(width, height, color, x, y) {
+        this.gamearea = myGameArea;
+        this.width = width;
+        this.height = height;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.x = x;
+        this.y = y;
+        this.update = function () {
+          ctx = myGameArea.context;
+          ctx.fillStyle = "#7e7e7e";
+          ctx.fillRect(10, 0, 10, 270);
+          ctx.fillRect(250, 0, 10, 270);
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, palce, 960, 10);
+          ctx.fillRect(0, 240, 960, 10);
+          ctx.fillRect(0, 0, 960, 10);
+          ctx.fillRect(0, 0, 10, 250);
+          ctx.fillRect(950, 0, 10, 250);
+          ctx.fillRect(
+            obstacleOne.x - 10,
+            obstacleOne.y - 10,
+            obstacleOne.width + 20,
+            obstacleOne.height + 20
+          );
+          ctx.fillRect(
+            obstacleTwo.x - 10,
+            obstacleTwo.y - 10,
+            obstacleTwo.width + 20,
+            obstacleTwo.height + 20
+          );
+          ctx.fillRect(
+            obstacleThree.x - 10,
+            obstacleThree.y - 10,
+            obstacleThree.width + 20,
+            obstacleThree.height + 20
+          );
+          ctx.fillStyle = "red";
+          ctx.fillRect(
+            this.x - 10,
+            this.y - 10,
+            this.width + 20,
+            this.height + 20
+          );
+          ctx.fillStyle = "black";
+          ctx.fillRect(0, 250, 960, 30);
+          ctx.fillStyle = color;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+          ctx.fillStyle = "black";
+          ctx.fillRect(
+            obstacleOne.x,
+            obstacleOne.y,
+            obstacleOne.width,
+            obstacleOne.height
+          );
+          ctx.fillRect(
+            obstacleTwo.x,
+            obstacleTwo.y,
+            obstacleTwo.width,
+            obstacleTwo.height
+          );
+          ctx.fillRect(
+            obstacleThree.x,
+            obstacleThree.y,
+            obstacleThree.width,
+            obstacleThree.height
+          );
+          ctx.fillRect(10, 10, 200, 30);
+          ctx.font = "15px Comic Sans MS";
+          ctx.fillStyle = "white";
+          ctx.fillText("JUMP:", 12, 30);
+          ctx.fillStyle = "black";
+          ctx.fillText(score2, 225, 30);
+          if (info <= 59) {
+          ctx.fillText("Use the Arrow keys to move around!", 500, 30);}
+          ctx.fillText("Best score: " + highScore, 12, 60);
+          ctx.fillRect(
+            screenF.x,
+            screenF.y,
+            screenF.width,
+            screenF.height
+          );
+          if (jumps >= 26) {
+            meter = "#10ee10";
+          } else if (jumps >= 21) {
+            meter = "#55cc10";
+          } else if (jumps >= 16) {
+            meter = "#aaaa10";
+          } else if (jumps >= 11) {
+            meter = "#cc5510";
+          } else if (jumps >= 6) {
+            meter = "#ee1010";
+          } else {
+            meter = "red";
+          }
+          ctx.fillStyle = meter;
+          ctx.fillRect(65, 15, 140 * (jumps / 30), 20);
+        };
+        this.newPos = function () {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.y >= 220) {
+            this.y = 220;
+              jumps = 30;
+          }
+          if (this.x >= 220) {
+            this.x = 220;
+          }
+          if (this.x <= 20) {
+            this.x = 20;
+          }
+        };
+      }
+
+      var score2 = 0;
+      
+      function updateGameArea() {
+          myGameArea.clear();
+          if (collision(myGamePiece, obstacleOne) || collision(myGamePiece, obstacleTwo) || collision(myGamePiece, obstacleThree)) {
+            if (highScore < score2) {
+              highScore = score2
+            }
+            score = 0;
+            myGamePiece = new component(30, 30, "black", 50, 120);
+            obstacleOne = new component(20, 100, "black", 300, yearn());
+            obstacleTwo = new component(20, 100, "black", 630, yearn());
+            obstacleThree = new component(20, 100, "black", 960, yearn());
+            multiplier = 1;
+            jumps = 0
+            punchO = 0;
+            punchTW = 0;
+            punchTH = 0;
+          }
+          multiplier += 0.004;
+          myGamePiece.speedX = 0;
+          myGamePiece.speedY += 0.8;
+          score += 0.002 * multiplier;
+          score2 = Math.ceil(score);
+          fall += 0.2;
+          screenF.y += fall;
+          if (palce < 240) {
+            palce += fall;
+          } else {
+            palce = 240;
+            
+          }
+          if (myGameArea.keys && myGameArea.keys[38] && jumps >= 1) {
+            myGamePiece.speedY = -13 * (jumps / 30);
+            jumps -= 1;
+            info += 1;
+          }
+          if (myGameArea.keys && myGameArea.keys[40] && jumps >= 1) {
+            myGamePiece.speedY = 12;
+          }
+          if (myGameArea.keys && myGameArea.keys[37]) {
+            myGamePiece.speedX = -8;
+          }
+          if (myGameArea.keys && myGameArea.keys[39]) {
+            myGamePiece.speedX = 8;
+          }
+          obstacleOne.x -= 0.9 * multiplier;
+          if (obstacleOne.x < -30) {
+            obstacleOne.x = 960 + (Math.ceil(Math.random() * 15) * 3);
+            obstacleOne.y = yearn();
+            punchO += 0.2;
+          }
+          obstacleTwo.x -= 0.9 * multiplier;
+          if (obstacleTwo.x < -30) {
+            obstacleTwo.x = 960 + (Math.ceil(Math.random() * 15) * 3);
+            obstacleTwo.y = yearn();
+            punchTW += 0.2;
+          }
+          obstacleThree.x -= 0.9 * multiplier;
+          if (obstacleThree.x < -30) {
+            obstacleThree.x = 960 + (Math.ceil(Math.random() * 15) * 3);
+            obstacleThree.y = yearn();
+            punchTH += 0.2;
+          }
+          myGamePiece.newPos();
+          myGamePiece.update();
+      }
+    </script>
+  <a onclick="startGame();"><h1><strong id="demo" style="position:fixed;text-align:center;margin-left:-115px;margin-top:-20px;"></strong></h1></a>
+
+    <div class="wrapper">
+      <div class="content" role="main">
+        <div class="instructions">
+          <h1>Main Categories</h1>
+          <!--<form action="https://pdsdminecraftserver.wayway21.repl.co/">-->
+
+          <form action="https://www.youtube.com/channel/UCznAExfPNv6886IkBpBMrdA">
+          <input type="submit" value="YouTube Channel" /></form>
+          <form method="get" action="emu/Games.html">                         
+          <button type="submit">Emulator Games</button></form> 
+          <form method="get" action="unblocked/UnblockedGame.html">
+    <button type="submit">Unblocked Games</button></form>
+          <form method="get" action="chats/chat.html">
+    <button type="submit">Website chat</button></form>
+          <form method="get" action="other/Other.html">
+    <button type="submit">Other</button></form>
+      <h1>
+        Twitter Feed
+      </h1>
+<h3 style="float:left;color:black;font-size: 50px;width:25%;opacity:0;cursor:default;" width="25%">..................</h3>
+<a class="twitter-timeline" data-width="50%" data-height="900" left="25%" style="text-align:center;justify-content: center; display:flex;margin-left:-25%;" data-theme="dark" href="https://twitter.com/WayWayFN?ref_src=twsrc%5Etfw">Tweets by WayWayFN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" style="text-align:center;margin-left:25%;"></script>  </div>
+      </div>
+  </div>
+</html>
+
+  
